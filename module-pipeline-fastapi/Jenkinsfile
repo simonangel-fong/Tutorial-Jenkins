@@ -4,7 +4,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh 'docker build -t fastapi-app ./module-pipeline-fastapi/fastapi-app'
+                sh 'cd module-pipeline-fastapi'
+                sh 'pwd'
+                sh 'ls'
+                sh 'docker build -t fastapi-app .'
             }
         }
     //     stage('Test') {
