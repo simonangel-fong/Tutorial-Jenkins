@@ -69,4 +69,20 @@ pipeline {
 
 ### Create Pipeline
 
+- Create job
+
 ![pic](./pic/github_pipeline01.png)
+
+- Configure>Pipeline
+
+![pic](./pic/github_pipeline02.png)
+
+![pic](./pic/github_pipeline03.png)
+
+- Build Now
+
+![pic](./pic/github_pipeline04.png)
+
+![pic](./pic/github_pipeline05.png)
+
+---

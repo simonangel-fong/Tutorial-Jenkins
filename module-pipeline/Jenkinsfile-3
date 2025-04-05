@@ -1,0 +1,32 @@
+// env var: http://localhost:8081/env-vars.html/
+pipeline {
+    agent any
+    
+    // custom env var
+    environment {
+        NEW_VERSION = '1.3.0'
+    }
+    stages {
+        stage('build'){
+            steps {
+                echo "building the application..."
+                // use custom env var
+                echo "building version ${NEW_VERSION}"
+            }
+        }
+        
+        stage('test'){
+            steps {
+                echo "Testing the application..."
+            }
+        }
+
+        stage('deploy'){
+            steps {
+                echo "Deploying the application..."
+            }
+        }
+    }
+
+   
+}

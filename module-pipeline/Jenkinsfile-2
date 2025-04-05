@@ -1,0 +1,50 @@
+CODE_CHANGES = getGitChanges()
+pipeline {
+    agent any
+    
+    stages {
+        stage('build'){
+            steps {
+                echo "building the application..."
+            }
+        }
+        
+        stage('test'){
+            // condition
+            when {
+                expression{
+                    // the branch name
+                    // BRANCH_NAME == 'dev' || BRANCH_NAME == 'master'
+                    BRANCH_NAME == 'master' && CODE_CHANGES == true
+                }
+            }
+            steps {
+                echo "Testing the application..."
+            }
+        }
+
+        stage('deploy'){
+            steps {
+                echo "Deploying the application..."
+            }
+        }
+    }
+
+    post{
+        //conditions
+        always{
+            // send email
+        }
+        // condition
+        success{
+            // send email
+            // commit
+        }
+
+        //condition
+        failure{
+            // roll back
+            // send email
+        }
+    }
+}
