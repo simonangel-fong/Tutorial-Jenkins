@@ -2,6 +2,5 @@
 
 A repo for Jenkins tutorial.
 
-## Install
-
-- [Docker](./module-install-docker/README.md)
+- [Module: Install(Docker)](./module-install-docker/README.md)
+- [Module: Pipeline](./module-pipeline/README.md)
