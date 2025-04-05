@@ -1,10 +1,14 @@
 pipeline {
-    agent any
+    agent {
+        docker{
+            image 'docker:dind'
+        }
+    }
     stages {
         stage('Build') {
             steps {
                 echo 'Building...'
-                bat 'docker build -t fastapi-app module-pipeline-fastapi\\fastapi-app\\Dockerfile'
+                sh 'docker ps'
             }
         }
     //     stage('Test') {
