@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                sh 'docker build -t fastapi-app .'
+            }
+        }
+    //     stage('Test') {
+    //         steps {
+    //             script {
+    //                 // Run tests and capture the exit code
+    //                 def testResult = sh(script: 'docker run --rm fastapi-app pytest', returnStatus: true)
+    //                 if (testResult != 0) {
+    //                     // Tests failed
+    //                     currentBuild.result = 'FAILURE'
+    //                     error "Tests failed, stopping pipeline."
+    //                 } else {
+    //                     // Tests passed
+    //                     echo "Tests passed successfully!"
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     stage('Deploy') {
+    //         when {
+    //             expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
+    //         }
+    //         steps {
+    //             sh 'docker stop fastapi-app || exit 0'
+    //             sh 'docker rm fastapi-app || exit 0'
+    //             sh 'docker run -d --name fastapi-app -p 8000:8000 fastapi-app'
+    //         }
+    //     }
+    // }
+    // post {
+    //     failure {
+    //         mail to: 'abc@gmail.com',
+    //              subject: "Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+    //              body: "The tests failed in ${env.JOB_NAME} build #${env.BUILD_NUMBER}. Check Jenkins for details: ${env.BUILD_URL}"
+    //     }
+    //     success {
+    //         mail to: 'abc@gmail.com',
+    //              subject: "Build Succeeded: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+    //              body: "The build and tests passed for ${env.JOB_NAME} build #${env.BUILD_NUMBER}. App deployed successfully! Check Jenkins: ${env.BUILD_URL}"
+    //     }
+    }
+}
