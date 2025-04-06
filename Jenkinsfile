@@ -8,8 +8,17 @@ pipeline {
                     sh 'pwd'
                     sh 'ls'
                     sh 'docker build -t fastapi-app .'
+                    sh 'docker run --name fastapi-container -p 8001:8000 fastapi-app .'
                 }
             }
         }
+        // stage('test') {
+        //     steps {
+        //         echo '...'
+        //         dir('/var/lib/jenkins/workspace/docker-pipeline/module-pipeline-fastapi/fastapi-app') {
+        //             sh 'docker exec fastapi-container '
+        //         }
+        //     }
+        // }
     }
 }
