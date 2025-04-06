@@ -26,4 +26,16 @@ pipeline {
             }
         }
     }
+    post {
+        failure {
+            mail to: 'simonangelfong@gmail.com',
+                 subject: "Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                 body: "The tests failed in ${env.JOB_NAME} build #${env.BUILD_NUMBER}. Check Jenkins for details: ${env.BUILD_URL}"
+        }
+        success {
+            mail to: 'simonangelfong@gmail.com',
+                 subject: "Build Succeeded: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                 body: "The build and tests passed for ${env.JOB_NAME} build #${env.BUILD_NUMBER}. App deployed successfully! Check Jenkins: ${env.BUILD_URL}"
+        }
+    }
 }
