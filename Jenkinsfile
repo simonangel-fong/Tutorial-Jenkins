@@ -30,13 +30,13 @@ pipeline {
         failure {
             mail(
                 body: 'This email was sent by a test Jenkins Pipeline job, using Gmail SMTP.', 
-                subject: 'Jenkins Pipeline job email', 
+                subject: 'failure', 
                 to: 'tech.arguswatcher@gmail.com')
         }
         success {
             mail(
                 body: 'This email was sent by a test Jenkins Pipeline job, using Gmail SMTP.', 
-                subject: 'Jenkins Pipeline job email', 
+                subject: 'Jenkins Pipeline job Success', 
                 to: 'tech.arguswatcher@gmail.com'
             )
         }
