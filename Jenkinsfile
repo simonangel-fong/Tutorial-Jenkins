@@ -5,21 +5,23 @@ pipeline {
             steps {
                 echo 'Building...'
                 dir('/var/lib/jenkins/workspace/docker-pipeline/module-pipeline-fastapi/fastapi-app') {
-                    sh 'pwd'
-                    sh 'ls'
                     sh 'docker build -t fastapi-app .'
-                    sh 'docker rm fastapi-container'
-                    sh 'docker run --name fastapi-container -p 8001:8000 -d fastapi-app'
                 }
             }
         }
-        // stage('test') {
-        //     steps {
-        //         echo '...'
-        //         dir('/var/lib/jenkins/workspace/docker-pipeline/module-pipeline-fastapi/fastapi-app') {
-        //             sh 'docker exec fastapi-container '
-        //         }
-        //     }
-        // }
+        stage('test') {
+            steps {
+                echo 'Testing...'
+                sh 'docker run --rm fastapi-app pytest'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                sh 'docker run --name fastapi-container -p 8001:8000 -d fastapi-app'
+                sh 'firewall-cmd --permanent --add-port=8001/tcp'
+                sh 'firewall-cmd --reload'
+            }
+        }
     }
 }
