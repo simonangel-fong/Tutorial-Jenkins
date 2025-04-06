@@ -5,7 +5,8 @@ pipeline {
             steps {
                 echo 'Building...'
                 sh 'pwd'
-                sh 'docker build -t fastapi-app ./module-pipeline-fastapi/fastapi-app/Dockerfile'
+                sh 'cd ./module-pipeline-fastapi/fastapi-app/'
+                sh 'docker build -t fastapi-app .'
             }
         }
     }
