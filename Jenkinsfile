@@ -1,11 +1,10 @@
 pipeline {
-    agent {
-        docker { image 'node:22.14.0-alpine3.21' }
-    }
+    agent any
     stages {
-        stage('Test') {
+        stage('build') {
             steps {
-                sh 'node --eval "console.log(process.platform,process.env.CI)"'
+                echo 'Building...'
+                sh 'docker build -t fastapi-app ./module-pipeline-fastapi/fastapi-app/Dockerfile'
             }
         }
     }

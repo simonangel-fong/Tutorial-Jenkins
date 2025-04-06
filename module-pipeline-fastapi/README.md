@@ -265,3 +265,6 @@ docker run -d --restart=always -p 2376:2375 --network jenkins -v /var/run/docker
 docker inspect <container_id> | grep IPAddress
 ```
 
+```sh
+sudo chmod 666 /var/run/docker.sock
+```
