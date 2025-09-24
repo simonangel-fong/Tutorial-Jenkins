@@ -1,0 +1,68 @@
+jenkins:
+  systemMessage: "Example of Agent"
+
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+      - id: ${JENKINS_ADMIN_ID}
+        name: ${JENKINS_ADMIN_ID}
+        password: ${JENKINS_ADMIN_PASSWORD}
+
+  nodes:
+  - permanent:
+      labelString: "ubuntu_agent"
+      launcher:
+        ssh:
+          credentialsId: "jenkins_ssh"
+          host: "192.168.100.110"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      name: "ubuntu_agent"
+      remoteFS: "/home/jenkins/agent"
+      retentionStrategy: "always"
+
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"
+
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - basicSSHUserPrivateKey:
+          id: "jenkins_ssh"
+          privateKeySource:
+            directEntry:
+              privateKey: private_key
+          scope: GLOBAL
+          username: "jenkins"
+          usernameSecret: true
+      domain: {
+        }
+  user: {
+    }
+
+jobs:
+  - script: >
+      pipelineJob('test_vm_agent') {
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url('https://github.com/simonangel-fong/Tutorial-Jenkins.git')
+                }
+                branch('*/master')
+              }
+            }
+            scriptPath('module_agent/Jenkinsfile')
+          }
+        }
+      }

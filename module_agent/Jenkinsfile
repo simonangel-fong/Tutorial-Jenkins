@@ -1,0 +1,14 @@
+pipeline {
+    agent { node { label 'ubuntu_agent' } }
+    stages {
+        stage('test') {
+            steps {
+                sh '''
+                whoami
+                pwd
+                uname -a
+                '''
+            }
+        }
+    }
+}
