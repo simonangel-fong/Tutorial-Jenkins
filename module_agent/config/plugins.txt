@@ -11,7 +11,7 @@ checks-api: 373.vfe7645102093
 cloudbees-folder: 6.1045.vb_ddd55e2d03f
 commons-lang3-api: 3.18.0-98.v3a_674c06072d
 commons-text-api: 1.14.0-194.v804a_dc3a_1b_d8
-configuration-as-code: 1985.vdda_32d0c4ea_b_
+configuration-as-code: 1995.v540b_50a_eb_0c1
 credentials-binding: 702.vfe613e537e88
 credentials: 1447.v4cb_b_539b_5321
 dark-theme: 574.va_19f05d54df5
@@ -72,6 +72,7 @@ resource-disposer: 0.25
 scm-api: 709.v6c27075a_b_1c7
 script-security: 1378.vf25626395f49
 snakeyaml-api: 2.3-125.v4d77857a_b_402
+ssh-agent: 386.v36cc0c7582f0
 ssh-credentials: 361.vb_f6760818e8c
 ssh-slaves: 3.1071.v0d059c7b_c555
 structs: 353.v261ea_40a_80fb_
