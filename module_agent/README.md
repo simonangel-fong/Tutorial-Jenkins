@@ -152,20 +152,19 @@ services:
 ```yaml
 jenkins:
   nodes:
-    - permanent:
-        labelString: "ubuntu_agent"
-        launcher:
-          ssh:
-            credentialsId: "jenkins_ssh"
-            host: "192.168.100.110"
-            port: 22
-            sshHostKeyVerificationStrategy:
-              manuallyTrustedKeyVerificationStrategy:
-                requireInitialManualTrust: false
-        name: "ubuntu_agent"
-        numExecutors: 2
-        remoteFS: "/home/jenkins/agent"
-        retentionStrategy: "always"
+  - permanent:
+      labelString: "docker_agent"
+      launcher:
+        ssh:
+          credentialsId: "jenkins_ssh"
+          host: "jenkins-agent"
+          port: 22
+          sshHostKeyVerificationStrategy:
+            manuallyTrustedKeyVerificationStrategy:
+              requireInitialManualTrust: false
+      name: "docker_agent"
+      remoteFS: "/home/jenkins"
+      retentionStrategy: "always"
   numExecutors: 0
 
 jobs:
@@ -198,4 +197,4 @@ jobs:
 
 - Run pipeline
 
-![pic](./pic/docke_agent_pipeline.png)
+![pic](./pic/docker_agent_pipeline.png)
