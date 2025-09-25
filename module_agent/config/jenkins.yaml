@@ -66,3 +66,19 @@ jobs:
           }
         }
       }
+  - script: >
+      pipelineJob('test_docker_agent') {
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url('https://github.com/simonangel-fong/Tutorial-Jenkins.git')
+                }
+                branch('*/master')
+              }
+            }
+            scriptPath('module_agent/docker_agent.Jenkinsfile')
+          }
+        }
+      }
